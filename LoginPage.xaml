@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PM2E230217.LoginPage"
+             Title="Iniciar sesión"
+             BackgroundColor="#F3F4F6">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" VerticalOptions="Center">
+
+            <!-- Tarjeta principal -->
+            <Border BackgroundColor="White"
+                    Stroke="#E5E7EB"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 16"
+                    Padding="24">
+
+                <VerticalStackLayout Spacing="14">
+
+                    <Label Text="Bienvenido"
+                           FontSize="28"
+                           FontAttributes="Bold"
+                           TextColor="#111827"
+                           HorizontalOptions="Center" />
+
+                    <Label Text="Ingresa tus datos para continuar"
+                           FontSize="13"
+                           TextColor="#6B7280"
+                           HorizontalOptions="Center" />
+
+                    <Entry x:Name="CorreoEntry"
+                           Placeholder="Correo electrónico"
+                           Keyboard="Email"
+                           TextColor="#111827"
+                           PlaceholderColor="#9CA3AF" />
+
+                    <Entry x:Name="ClaveEntry"
+                           Placeholder="Contraseña"
+                           IsPassword="True"
+                           TextColor="#111827"
+                           PlaceholderColor="#9CA3AF" />
+
+                    <!-- Mostrar / ocultar contraseña -->
+                    <HorizontalStackLayout Spacing="6">
+                        <CheckBox x:Name="MostrarClaveCheck"
+                                  Color="#374151"
+                                  VerticalOptions="Center"
+                                  CheckedChanged="OnMostrarClaveChanged" />
+                        <Label Text="Mostrar contraseña"
+                               TextColor="#374151"
+                               VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+
+                    <Label x:Name="IntentosLabel"
+                           Text="Intentos fallidos: 0 de 3"
+                           FontSize="12"
+                           TextColor="#6B7280" />
+
+                    <Button x:Name="LoginBtn"
+                            Text="Iniciar sesión"
+                            BackgroundColor="#374151"
+                            TextColor="White"
+                            CornerRadius="10"
+                            HeightRequest="48"
+                            Clicked="OnLoginClicked" />
+
+                    <!-- Solo se ve mientras se espera la respuesta de la API -->
+                    <ActivityIndicator x:Name="Cargando"
+                                       IsRunning="False"
+                                       IsVisible="False"
+                                       Color="#374151"
+                                       HorizontalOptions="Center" />
+
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

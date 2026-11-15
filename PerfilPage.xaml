@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PM2E230217.PerfilPage"
+             Title="Perfil de Usuario"
+             BackgroundColor="#F3F4F6">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="18">
+
+            <!-- Avatar -->
+            <Border WidthRequest="80"
+                    HeightRequest="80"
+                    StrokeShape="RoundRectangle 40"
+                    Stroke="Transparent"
+                    BackgroundColor="#374151"
+                    HorizontalOptions="Center">
+                <Label Text=".NET"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+            </Border>
+
+            <Label x:Name="NombreLabel"
+                   Text="Cargando..."
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   TextColor="#111827"
+                   HorizontalOptions="Center" />
+
+            <!-- Disponible para trabajar -->
+            <HorizontalStackLayout Spacing="12" HorizontalOptions="Center">
+                <Label Text="Disponible para trabajar"
+                       TextColor="#374151"
+                       VerticalOptions="Center" />
+                <Switch x:Name="DisponibleSwitch"
+                        OnColor="#374151" />
+            </HorizontalStackLayout>
+
+            <!-- Años de experiencia -->
+            <Label Text="Años de experiencia"
+                   TextColor="#374151"
+                   FontAttributes="Bold" />
+
+            <Slider x:Name="ExperienciaSlider"
+                    Minimum="0"
+                    Maximum="15"
+                    MinimumTrackColor="#374151"
+                    ThumbColor="#374151"
+                    ValueChanged="OnSliderChanged" />
+
+            <!-- Este Border cambia de color según los años de experiencia -->
+            <Border x:Name="NivelBorder"
+                    BackgroundColor="#DCFCE7"
+                    Stroke="Transparent"
+                    StrokeShape="RoundRectangle 12"
+                    Padding="16">
+                <VerticalStackLayout Spacing="4">
+                    <Label x:Name="AniosLabel"
+                           Text="0 años de experiencia"
+                           TextColor="#111827"
+                           HorizontalOptions="Center" />
+                    <Label x:Name="NivelLabel"
+                           Text="Nivel Inicial"
+                           FontAttributes="Bold"
+                           TextColor="#111827"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="Cerrar sesión"
+                    BackgroundColor="Transparent"
+                    TextColor="#374151"
+                    BorderColor="#374151"
+                    BorderWidth="1.5"
+                    CornerRadius="10"
+                    HeightRequest="48"
+                    Clicked="OnCerrarSesionClicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
