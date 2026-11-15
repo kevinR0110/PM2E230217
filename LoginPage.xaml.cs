@@ -5,14 +5,14 @@ namespace PM2E230217;
 public partial class LoginPage : ContentPage
 {
     private const int MaxIntentos = 3;
-    private int intentosFallidos = 0;   // solo cuentan las respuestas 401
+    private int intentosFallidos = 0;   
 
     public LoginPage()
     {
         InitializeComponent();
     }
 
-    // CheckBox "Mostrar contraseña": si está marcado, IsPassword = false
+
     private void OnMostrarClaveChanged(object? sender, CheckedChangedEventArgs e)
     {
         ClaveEntry.IsPassword = !e.Value;
@@ -23,14 +23,14 @@ public partial class LoginPage : ContentPage
         string correo = CorreoEntry.Text?.Trim() ?? "";
         string clave = ClaveEntry.Text ?? "";
 
-        // 1. Campos vacíos: avisar y NO llamar a la API
+      
         if (string.IsNullOrWhiteSpace(correo) || string.IsNullOrWhiteSpace(clave))
         {
             await DisplayAlert("Campos vacíos", "Escribe tu correo y tu contraseña.", "OK");
             return;
         }
 
-        // 2. Bloquear el botón y mostrar el indicador de carga
+
         LoginBtn.IsEnabled = false;
         Cargando.IsVisible = true;
         Cargando.IsRunning = true;
@@ -46,7 +46,7 @@ public partial class LoginPage : ContentPage
         }
         catch (ApiException ex)
         {
-            // La API respondió con error
+            
             if (ex.Codigo == HttpStatusCode.Unauthorized)
             {
                 intentosFallidos++;
@@ -68,18 +68,18 @@ public partial class LoginPage : ContentPage
         }
         catch (Exception)
         {
-            // API apagada, sin red o timeout: NO cuenta como intento
+            
             await DisplayAlert("Sin conexión", "No se pudo conectar con la API. Verifica que esté encendida.", "OK");
         }
         finally
         {
-            // Siempre se apaga el indicador; el botón solo se reactiva si no está bloqueado
+            
             Cargando.IsRunning = false;
             Cargando.IsVisible = false;
             LoginBtn.IsEnabled = intentosFallidos < MaxIntentos;
         }
 
-        // 3. Login correcto: abrir el Perfil con PushAsync
+       
         if (exito)
         {
             ClaveEntry.Text = "";

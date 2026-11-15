@@ -9,7 +9,7 @@
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            // NavigationPage es necesario para poder usar PushAsync / PopAsync
+
             return new Window(new NavigationPage(new LoginPage())
             {
                 BarBackgroundColor = Color.FromArgb("#374151"),
